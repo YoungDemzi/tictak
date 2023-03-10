@@ -1,0 +1,51 @@
+:root {
+  --background-main-color: #469597;
+  --font-weight-header: 600;
+  --font-size-header: 28px;
+  --secondary-background-color: #e5e3e4;
+  --tile-background-color: #bbc6c8;
+  --shadow-color: #00000059;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: var(--secondary-background-color);
+}
+header {
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--background-main-color);
+  font-weight: var(--font-weight-header);
+  font-size: var(--font-size-header);
+}
+.main-section {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.game-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  width: fit-content;
+}
+.game-tile {
+  display: flex;
+  align-items: center;
+  background-color: var(--tile-background-color);
+  box-shadow: var(--shadow-color) 0px 0px 4px;
+  width: 200px;
+  height: 200px;
+  opacity: 0.8;
+}
+.game-tile:hover {
+  opacity: 1;
+}
+.marker {
+  font-size: 48px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
