@@ -1,21 +1,26 @@
 const Player = (name) => {
-  const ownedTiles = [];
+  let ownedTiles = [];
   const pushTiles = (tile) => {
     ownedTiles.push(tile);
-    console.log({ ownedTiles });
+    console.log({ name, ownedTiles });
   };
   const checkWin = (winConditions) => {
     winConditions.forEach((array) => {
       const isWin = array.every((cell) => ownedTiles.includes(cell));
       if (isWin) {
         console.log(`${name} Has Won`);
+        setTimeout(popup(name), 200);
       }
     });
+  };
+  const reset = () => {
+    ownedTiles = [];
   };
   return {
     name,
     pushTiles,
     checkWin,
+    reset,
   };
 };
 const gameBoard = (() => {
@@ -37,7 +42,7 @@ const gameBoard = (() => {
   let activePlayer = playerX;
   return {
     generate: function generate() {
-      for (let i = 1; i < tiles.length + 1; i++) {
+      for (let i = 1; i < 9 + 1; i++) {
         const tile = document.createElement("div");
         tile.addEventListener("click", () => {
           if (!tile.firstChild) {
@@ -57,11 +62,31 @@ const gameBoard = (() => {
         boardContainer.appendChild(tile);
       }
     },
-    remove: function remove() {
+    reset: function reset() {
       while (boardContainer.firstChild) {
         boardContainer.removeChild(boardContainer.firstChild);
       }
+      tiles.fill(""); // reset tiles array
+      activePlayer = playerX; // set active player back to playerX
+      playerX.reset(); // reset ownedTiles array for playerX
+      playerO.reset(); // reset ownedTiles array for playerO
+      gameBoard.generate(); // generate new tiles
     },
   };
 })();
 gameBoard.generate();
+
+const popup = (name) => {
+  const endScreen = document.querySelector(".popup");
+  endScreen.firstChild.textContent = `Player ${name} Won!`;
+  const resetBtn = document
+    .querySelector(".reset")
+    .addEventListener("click", () => {
+      endScreen.style.opacity = "0";
+      endScreen.style.visibility = "hidden";
+    });
+  endScreen.style.opacity = "1";
+  endScreen.style.visibility = "visible";
+  console.log("Popup");
+  gameBoard.reset();
+};

@@ -1,10 +1,11 @@
 :root {
   --background-main-color: #469597;
-  --font-weight-header: 600;
-  --font-size-header: 28px;
+  --font-weight-header: 900;
+  --font-size-header: 48px;
   --secondary-background-color: #e5e3e4;
   --tile-background-color: #bbc6c8;
   --shadow-color: #00000059;
+  --popup-color: #e2dcd9;
 }
 body {
   margin: 0;
@@ -14,6 +15,8 @@ body {
   background-color: var(--secondary-background-color);
 }
 header {
+  color: #bbc6c8;
+  text-shadow: var(--shadow-color) 0px 0px 4px;
   padding: 2rem;
   text-align: center;
   background-color: var(--background-main-color);
@@ -40,7 +43,8 @@ header {
   height: 200px;
   opacity: 0.8;
 }
-.game-tile:hover {
+.game-tile:hover,
+.reset:hover {
   opacity: 1;
 }
 .marker {
@@ -48,4 +52,39 @@ header {
   font-weight: bold;
   text-align: center;
   width: 100%;
+}
+.popup {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 600px;
+  height: 500px;
+  position: absolute;
+  box-shadow: var(--shadow-color) 0px 5px 30px;
+  background-color: var(--popup-color);
+  border-radius: 0.5rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  z-index: 1;
+  transition: opacity 0.2s;
+  opacity: 0;
+  visibility: hidden;
+}
+.popup-text {
+  padding: 2rem;
+}
+.reset {
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 2rem;
+  background-color: var(--background-main-color);
+  box-shadow: var(--shadow-color) 0px 0px 4px;
+  opacity: 0.8;
+  margin: 2px;
 }
